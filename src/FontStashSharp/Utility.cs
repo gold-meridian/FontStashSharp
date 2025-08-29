@@ -140,8 +140,7 @@ namespace FontStashSharp
 		public static Vector2 Transform(this Vector2 v, ref Matrix matrix)
 		{
 #if MONOGAME || FNA
-			Vector2 result;
-			Vector2.Transform(ref v, ref matrix, out result);
+			Vector2 result = Vector2.Transform(v, matrix);
 			return result;
 #elif STRIDE
 			Vector4 result;
