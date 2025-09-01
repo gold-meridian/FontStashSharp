@@ -63,8 +63,9 @@ namespace FontStashSharp
 		{
 			if (source.IsNull) return Bounds.Empty;
 
-			int ascent, lineHeight;
-			PreDraw(source, effect, effectAmount, out ascent, out lineHeight);
+			int ascent;
+			int lineHeight = LineHeight;
+			PreDraw(source, effect, effectAmount, out ascent, out _);
 
 			var x = position.X;
 			var y = position.Y;
@@ -111,7 +112,7 @@ namespace FontStashSharp
 					maxx = x;
 
 				var y0 = y + glyph.RenderOffset.Y;
-				var y1 = y0 + glyph.Size.Y;
+				var y1 = y0; // + glyph.Size.Y; Remove tailed characters displacing the line completely
 				if (y0 < miny)
 					miny = y0;
 				if (y1 > maxy)
